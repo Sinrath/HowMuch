@@ -9,6 +9,7 @@ const currencies = [
   { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
   { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
   { code: 'KRW', name: 'South Korean Won', symbol: '₩', flag: '🇰🇷' },
+  { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', flag: '🇳🇴' },
   { code: 'BWP', name: 'Botswana Pula', symbol: 'P', flag: '🇧🇼' },
   { code: 'ZAR', name: 'South African Rand', symbol: 'R', flag: '🇿🇦' }
 ]
@@ -122,7 +123,8 @@ function App() {
                 {convertedAmounts.map(currency => (
                   <div
                     key={currency.code}
-                    className="p-4 border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-200 transition-all duration-200 bg-white"
+                    onClick={() => setFromCurrency(currency.code)}
+                    className="p-4 border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-200 transition-all duration-200 bg-white cursor-pointer hover:bg-blue-50"
                   >
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3 flex-1">
