@@ -6,11 +6,6 @@ const currencies = [
   { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸' },
   { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧' },
   { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', flag: '🇨🇭' },
-  { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵' },
-  { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
-  { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
-  { code: 'KRW', name: 'South Korean Won', symbol: '₩', flag: '🇰🇷' },
-  { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', flag: '🇳🇴' },
   { code: 'ZAR', name: 'South African Rand', symbol: 'R', flag: '🇿🇦' }
 ]
 
