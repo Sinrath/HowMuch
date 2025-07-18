@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
 
 const currencies = [
-  { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸' },
+  { code: 'BWP', name: 'Botswana Pula', symbol: 'P', flag: '🇧🇼' },
   { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺' },
-  { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', flag: '🇨🇭' },
+  { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸' },
   { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧' },
+  { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', flag: '🇨🇭' },
   { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵' },
   { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
   { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
   { code: 'KRW', name: 'South Korean Won', symbol: '₩', flag: '🇰🇷' },
   { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', flag: '🇳🇴' },
-  { code: 'BWP', name: 'Botswana Pula', symbol: 'P', flag: '🇧🇼' },
   { code: 'ZAR', name: 'South African Rand', symbol: 'R', flag: '🇿🇦' }
 ]
 
 function App() {
   const [amount, setAmount] = useState('')
-  const [fromCurrency, setFromCurrency] = useState('USD')
+  const [fromCurrency, setFromCurrency] = useState('CHF')
   const [exchangeRates, setExchangeRates] = useState({})
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -88,8 +88,8 @@ function App() {
         </div>
 
         <div className={`rounded-lg shadow-lg p-4 md:p-6 mb-6 transition-colors ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-end">
-            <div className="flex-1">
+          <div className="space-y-4 md:flex md:flex-row md:gap-4 md:items-end md:space-y-0">
+            <div className="w-full md:flex-1">
               <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Amount
               </label>
@@ -98,11 +98,11 @@ function App() {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="Enter amount"
-                className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-base md:text-lg transition-colors ${darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg transition-colors ${darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
               />
             </div>
 
-            <div className="flex-1">
+            <div className="w-full md:flex-1">
               <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 From Currency
               </label>
@@ -110,7 +110,7 @@ function App() {
                 <select
                   value={fromCurrency}
                   onChange={(e) => setFromCurrency(e.target.value)}
-                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-base md:text-lg appearance-none pr-10 transition-colors ${darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg appearance-none pr-10 transition-colors ${darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
                 >
                   {currencies.map(currency => (
                     <option key={currency.code} value={currency.code}>
