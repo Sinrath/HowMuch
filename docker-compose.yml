@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  howmuch:
+    build: .
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    container_name: howmuch-currency-converter
