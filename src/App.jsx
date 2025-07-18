@@ -30,33 +30,33 @@ function App() {
     setError('')
 
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'
-      
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+
       // Get all currency codes except the base currency
       const targetCurrencies = currencies
         .filter(currency => currency.code !== baseCurrency)
         .map(currency => currency.code)
-      
+
       // Use the backend API for each target currency
       const conversionPromises = targetCurrencies.map(async (targetCurrency) => {
         const response = await fetch(`${backendUrl}/api/convert?from=${baseCurrency}&to=${targetCurrency}&amount=${amount}`)
         const data = await response.json()
-        
+
         if (data.success) {
           return { currency: targetCurrency, rate: data.rate }
         } else {
           throw new Error(data.error || 'Conversion failed')
         }
       })
-      
+
       const conversions = await Promise.all(conversionPromises)
-      
+
       // Convert array to rates object
       const rates = {}
       conversions.forEach(({ currency, rate }) => {
         rates[currency] = rate
       })
-      
+
       setExchangeRates(rates)
       setLastUpdated(new Date().toLocaleString())
     } catch (err) {
