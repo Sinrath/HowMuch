@@ -118,25 +118,23 @@ function App() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {convertedAmounts.map(currency => (
                   <div
                     key={currency.code}
-                    className="p-5 border border-gray-200 rounded-xl hover:shadow-lg hover:border-blue-200 transition-all duration-200 bg-gradient-to-br from-white to-gray-50"
+                    className="p-4 border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-200 transition-all duration-200 bg-white"
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                          <span className="text-lg">{currency.flag}</span>
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-gray-800 truncate">{currency.name}</p>
-                          <p className="text-sm text-gray-500 font-medium">{currency.code}</p>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3 flex-1">
+                        <span className="text-xl">{currency.flag}</span>
+                        <div>
+                          <p className="font-medium text-gray-800 text-sm">{currency.name}</p>
+                          <p className="text-xs text-gray-500 font-medium">{currency.code}</p>
                         </div>
                       </div>
-                      <div className="text-right flex-shrink-0 ml-3">
-                        <p className="text-xl font-bold text-blue-600">
-                          {currency.symbol}{currency.convertedAmount}
+                      <div className="text-right">
+                        <p className="text-lg font-bold text-blue-600 whitespace-nowrap">
+                          {currency.symbol} {currency.convertedAmount}
                         </p>
                       </div>
                     </div>
