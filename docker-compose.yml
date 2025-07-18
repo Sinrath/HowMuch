@@ -2,8 +2,19 @@ version: '3.8'
 
 services:
   howmuch:
-    build: .
+    build:
+      context: .
+      args:
+        - VITE_EXCHANGE_RATES_API_KEY=${VITE_EXCHANGE_RATES_API_KEY}
+        - VITE_EXCHANGE_RATES_API_URL=${VITE_EXCHANGE_RATES_API_URL}
+        - NODE_ENV=${NODE_ENV:-production}
+    environment:
+      - VITE_EXCHANGE_RATES_API_KEY=${VITE_EXCHANGE_RATES_API_KEY}
+      - VITE_EXCHANGE_RATES_API_URL=${VITE_EXCHANGE_RATES_API_URL}
+      - NODE_ENV=${NODE_ENV:-production}
     ports:
       - "3001:80"
     restart: unless-stopped
     container_name: howmuch-currency-converter
+    env_file:
+      - .env

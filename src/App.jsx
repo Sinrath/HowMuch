@@ -30,10 +30,35 @@ function App() {
     setError('')
 
     try {
-      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`)
-      const data = await response.json()
-
-      setExchangeRates(data.rates)
+      const apiKey = import.meta.env.VITE_EXCHANGE_RATES_API_KEY
+      const apiUrl = import.meta.env.VITE_EXCHANGE_RATES_API_URL
+      
+      // Get all currency codes except the base currency
+      const targetCurrencies = currencies
+        .filter(currency => currency.code !== baseCurrency)
+        .map(currency => currency.code)
+      
+      // Use the convert endpoint for each target currency
+      const conversionPromises = targetCurrencies.map(async (targetCurrency) => {
+        const response = await fetch(`${apiUrl}/convert?access_key=${apiKey}&from=${baseCurrency}&to=${targetCurrency}&amount=${amount}`)
+        const data = await response.json()
+        
+        if (data.success) {
+          return { currency: targetCurrency, rate: data.result / parseFloat(amount) }
+        } else {
+          throw new Error(data.error?.info || 'Conversion failed')
+        }
+      })
+      
+      const conversions = await Promise.all(conversionPromises)
+      
+      // Convert array to rates object
+      const rates = {}
+      conversions.forEach(({ currency, rate }) => {
+        rates[currency] = rate
+      })
+      
+      setExchangeRates(rates)
       setLastUpdated(new Date().toLocaleString())
     } catch (err) {
       setError('Failed to fetch exchange rates')
